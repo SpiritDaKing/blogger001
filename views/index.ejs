@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html data-theme="coffee">
+  <head>
+    <title><%= title %></title>
+  </head>
+  
+  <link rel='stylesheet' href='/stylesheets/tailwind.css' />
+  <body>
+    <div>
+      <div>
+        <div>
+          <div class="flex-1">
+            
+          </div>
+          <div class="flex justify-between">
+            <div>
+            <a  class="btn btn-ghost normal-case text-xl">WeIrDLy</a>
+          </div>
+            <div>
+            <ul class="menu menu-horizontal p-0">
+              
+              <% if(locals.user){%> 
+               <li> <a href="/allposts">All Posts <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg></a> </li>
+               <li> <a href="/users/myposts" >See your posts</a></li> 
+               <li><a href="/users">My Profile</a></li>
+               <li> <a href="/logout" >Logout</a> </li>
+              <%}else{%>
+                <li><a href="/register" >Register <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg></a> </li>
+                <li><a href="/login" >Login  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg></a> 
+                </li> 
+              
+              <%}%>
+            </ul>
+          </div>
+          </div>
+        </div>
+        <br> <br>
+    <h1 class="text-xl text-rose-400 flex justify-center"><%= title %></h1> <br>
+    <p class="text-lg flex justify-center">Welcome <%= locals.user? locals.user.name: 'unknown user' %></p> <br>
+    
+  </div>
+  </div>
+  <div class="flex justify-center text-lg my-10">  <span>Most Likes</span> </div>
+  <% for (var i = 0; i < morelike.length; i++){%>
+    
+    <div class="flex justify-center">
+  <div class="card w-96 bg-base-100 shadow-xl">
+      <figure class="px-10 pt-10">
+        <img src="<%= morelike[i].image %>" class="rounded-xl" width="200px" height="180px"/>
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title"><%= morelike[i].title %></h2>
+        <p><%= morelike[i].content %></p>
+        <span><%= morelike[i].author.name %></span>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="/postdetail/<%= morelike[i]._id %>">Details</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+    
+    <%}%>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
+    <br> <br> <br>
+    <div class="flex justify-center text-lg my-10">  <span>Most Comments</span> </div>
+    <% for (var i = 0; i < morecomment.length; i++){%>
+    
+      <div class="flex justify-center ">
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <figure class="px-10 pt-10">
+          <img src="<%= morecomment[i].post[0].image %>" class="rounded-xl" width="200px" height="180px"/>
+        </figure>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title"><%= morecomment[i].post[0].title %></h2>
+          <p><%= morecomment[i].post[0].content %></p>
+          <span><%= morecomment[i].post[0].author.name %></span>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="/postdetail/<%= morecomment[i].post[0]._id %>">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <%}%>
+
+  </body>
+  <script>
+    console.log("<%= locals.users %>")
+  </script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Update</title>
+</head>
+<body>
+    <link rel="stylesheet" href="/stylesheets/tailwind.css">
+    <body> 
+        <div class="navbar bg-base-100">
+            <div class="flex-1">
+              <a class="btn btn-ghost normal-case text-xl">WeIrDLy</a>
+            </div>
+            <div class="flex-none">
+              <ul class="menu menu-horizontal p-0">
+                <li><a href="/users/myposts">Back to your posts</a></li>
+                
+              </ul>
+            </div>
+          </div>
+
+
+
+          
+          <!-- ////////////////////////////////// -->
+
+
+
+
+
+          <div class="flex place-content-center">
+            <div class="flex justify-center border w-80">
+                <div class="m-8">
+                    <div>
+
+
+
+    <h1 class="text-center text-xl">Post Update</h1> <br>
+    <form action="/users/postupdate" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= post._id %>">
+        <label for="title">Title</label> <br>
+        <input type="text" name="title" id="title" value="<%= post.title %>" class="input input-bordered input-info w-full max-w-xs" ><br /><br />
+        <label for="content">Content</label> <br>
+        <textarea name="content" id="content" cols="30" rows="10" class="input input-bordered input-info h-20"><%= post.content %></textarea><br/ ><br/ >
+        <label for="photo">Image File</label> <br>
+        <input type="file" name="photo" id="photo" accept="image/*" class="file:btn file:input-info"> <br><br>
+        <div class="flex justify-center">
+        <input type="submit" value="Update" class="text-blue-400 btn outline">
+    </div>
+    </form>
+</div> 
+</div>
+ </div> 
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="coffee">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.19.1/dist/full.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post List</title>
+
+    <style>
+        .div {
+            width: 400px;
+            height: 400px;
+            background-color: grey;
+            margin: 5px;
+            padding: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar bg-base-100">
+        <div class="flex-1">
+          <a class="btn btn-ghost normal-case text-xl">WeIrDLy</a>
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal p-0">
+            <li><a href="/users/postadd">Add another post</a></li>
+            <li><a href="/allposts">All Posts</a></li>
+            <li><a href="/users/favbloglist">My Fav Bloggers' posts</a></li>
+            <li><a href="/login">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+      <!-- ////////////////////////////////////////////////////////// -->
+  
+    
+    <% for (var i = 0; i < posts.length; i++){%>
+    <div class="card card-compact w-96 bg-base-100 shadow-xl inline-block ml-24 mt-10">
+      <h1><%= posts[i].title %></h1>
+      <p><%=posts[i].author.name %></p>
+      <figure><img src = "<%= posts[i].image %>" width="300px" height="200px"
+        alt="" /></figure>
+      <div class="card-body">
+        <h5><%= posts[i].content %></h5>
+        <div class="flex ">
+        <a href="/users/postupdate/<%= posts[i]._id %>" 
+          ><button class="btn btn-outline btn-secondary btn-sm">Post Update</button></a>
+        
+      <a href="/users/postdelete/<%= posts[i]._id %>" 
+          ><button class="btn btn-outline btn-error btn-sm">Post Delete</button></a>
+      
+      <a href="/users/postdetail/<%= posts[i]._id %>"><button class="btn btn-outline btn-success btn-sm">Post Details</button></a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    
+</body>
+</html>

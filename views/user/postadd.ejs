@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="coffee">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postadd</title>
+    
+</head>
+<link rel="stylesheet" href="/stylesheets/tailwind.css">
+<body> 
+  
+    <%include ../partials/navbar %>
+
+  <div class="flex place-content-center">
+    <div class="flex justify-center border w-80">
+        <div class="m-8">
+            <div>
+
+           
+    <h1 class="text-center text-xl">Post Add</h1> <br>
+    
+    <form action="/users/postadd" method="post" enctype="multipart/form-data">
+        <label for="title">What are you up to?</label> <br>
+        <input type="text" placeholder="Type here" name="title" class="input input-bordered input-info w-full max-w-xs" /><br /><br />
+        <label for="content">Content</label> <br>
+        <textarea name="content" id="content" cols="30" rows="10" class="input input-bordered input-info h-20" ></textarea><br/ ><br/ >
+        <label for="photo">Add a photo</label> <br>
+        <input type="file" name="photo" id="photo" accept="image/*" class="file:btn file:input-info"> <br><br>
+        <div class="flex justify-center">
+        <input type="submit" value="Add" class="text-blue-400 btn outline" >
+    </div >
+    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script>
+    $.validator.addMethod(
+  "regex",
+  function(value, element, regexp) {
+    var re = new RegExp(regexp);
+    return this.optional(element) || re.test(value);
+  },
+  "This field is required!"
+);
+
+$("#postaddForm").validate({
+        rules: {
+        title: {
+            required: true,
+        },
+        Content: {
+            required: true,
+        },
+      
+    }
+});
